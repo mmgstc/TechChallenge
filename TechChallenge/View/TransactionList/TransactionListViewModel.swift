@@ -11,24 +11,41 @@ import Combine
 class TransactionListViewModel: ObservableObject {
     
     private var cancelBag = Set<AnyCancellable>()
+    private var allTransactions: [TransactionModel]
     
-    @Published var transactions: [TransactionModel] = ModelData.sampleTransactions
+    @Published var transactions: [TransactionModel] = []
     @Published var category: TransactionModel.Category? = nil
+    @Published var total: Double = 0.0
+    
+    init(allTransactions: [TransactionModel] = ModelData.sampleTransactions) {
+        self.allTransactions = allTransactions
+        updateModel(for: category)
+    }
     
     func bind(_ filter: AnyPublisher<TransactionModel.Category?,Never>) {
         filter
-            .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
             .sink { category in
-                
-                self.category = category
-                
-                guard let category = category else {
-                    self.transactions = ModelData.sampleTransactions
-                    return
-                }
-                self.transactions = ModelData.sampleTransactions.filter({ $0.category == category })
+                self.updateModel(for: category)
             }
             .store(in: &cancelBag)
+    }
+    
+    private func updateModel(for category: TransactionModel.Category?) {
+        
+        self.category = category
+        
+        defer {
+            total = transactions.reduce(0.0, {partial, transaction in
+                partial + transaction.amount
+            })
+        }
+        
+        guard let category = category else {
+            transactions = allTransactions
+            return
+        }
+        
+        transactions = allTransactions.filter({ $0.category == category })
     }
 }

@@ -29,6 +29,9 @@ struct TransactionListView: View {
             .listStyle(PlainListStyle())
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Transactions")
+            
+            FloatingSumView(category: viewModel.category,
+                            total: viewModel.total)
         }
     }
     
