@@ -26,7 +26,9 @@ protocol TransactionProvider {
     func update()
 }
 
-class AppModel: ObservableObject, TransactionProvider {
+class AppModel: TransactionProvider {
+    
+    static var shared = AppModel()
     
     @Published var allTransactions: [TransactionModel] = []
     var allTransactionsPublished: Published<[TransactionModel]> { _allTransactions }

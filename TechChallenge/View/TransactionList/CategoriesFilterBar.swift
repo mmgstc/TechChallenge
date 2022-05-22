@@ -10,9 +10,11 @@ import Combine
 
 struct CategoriesFilterBar: View {
 
-    private let filterSubject = PassthroughSubject<TransactionModel.Category?, Never>()
-    var filter: AnyPublisher<TransactionModel.Category?,Never> {
-        filterSubject.eraseToAnyPublisher()
+    typealias Action = (_ category: TransactionModel.Category?) -> Void
+    private let action: Action
+    
+    init(with action: @escaping Action) {
+        self.action = action
     }
     
     var body: some View {
@@ -33,23 +35,26 @@ struct CategoriesFilterBar: View {
     }
     
     private func buttonTap(for category: TransactionModel.Category?) {
-        filterSubject.send(category)
+        action(category)
     }
 }
 
 #if DEBUG
 struct CategoriesFilterBar_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesFilterBar()
+        CategoriesFilterBar(with: { _ in })
     }
 }
 #endif
 
 private struct CategoryButton: View {
-    let category: TransactionModel.Category?
-    let action: (TransactionModel.Category?) -> Void
     
-    init(category: TransactionModel.Category?, action: @escaping (TransactionModel.Category?) -> Void) {
+    typealias Action = (TransactionModel.Category?) -> Void
+    
+    let category: TransactionModel.Category?
+    let action: Action
+    
+    init(category: TransactionModel.Category?, action: @escaping Action) {
         self.category = category
         self.action = action
     }

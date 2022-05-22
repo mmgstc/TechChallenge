@@ -42,7 +42,9 @@ struct InsightsView: View {
 #if DEBUG
 struct InsightsView_Previews: PreviewProvider {
     static var previews: some View {
-        InsightsView(viewModel: InsightsViewModel(transactionProvider: nil))
+        let viewModel = InsightsViewModel(transactionProvider: AppModel.shared)
+        AppModel.shared.update()
+        return InsightsView(viewModel: viewModel)
             .previewLayout(.sizeThatFits)
     }
 }

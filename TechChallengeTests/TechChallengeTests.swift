@@ -13,16 +13,10 @@ class TechChallengeTests: XCTestCase {
     
     var transactionProvider: TransactionProvider!
     var model: TransactionListViewModel!
-    var filterSubject = PassthroughSubject<TransactionModel.Category?, Never>()
-    var filter: AnyPublisher<TransactionModel.Category?,Never> {
-        filterSubject.eraseToAnyPublisher()
-    }
-    
     
     override func setUp() async throws {
         transactionProvider = MockTransactionProvider()
         model = TransactionListViewModel(transactionProvider: transactionProvider)
-        model.bind(filter)
     }
     
     override func tearDown() async throws {
@@ -37,7 +31,7 @@ class TechChallengeTests: XCTestCase {
         
         for category in TransactionModel.Category.allCases {
             // When
-            filterSubject.send(category)
+            model.updateModel(for: category)
 
             // Then
             model.transactions.forEach { transaction in
@@ -52,7 +46,7 @@ class TechChallengeTests: XCTestCase {
         transactionProvider.update()
 
         // When
-        filterSubject.send(nil)
+        model.updateModel(for: nil)
 
         // Then
         XCTAssertEqual(model.transactions, ModelData.sampleTransactions)
@@ -61,11 +55,10 @@ class TechChallengeTests: XCTestCase {
     func testTotalForAllTransactions() throws {
         
         // Given
-        model.bind(filter)
         transactionProvider.update()
         
         // When
-        filterSubject.send(nil)
+        model.updateModel(for: nil)
 
         // Then
         XCTAssertEqual(model.total.formatted(), "472.08")
@@ -83,12 +76,11 @@ class TechChallengeTests: XCTestCase {
         ]
         
         transactionProvider.update()
-        model.bind(filter)
         
         // When
         for category in TransactionModel.Category.allCases {
             // When
-            filterSubject.send(category)
+            model.updateModel(for: category)
 
             // Then
             XCTAssertEqual(model.total.formatted(), totals[category])
@@ -107,7 +99,11 @@ private class MockTransactionProvider: TransactionProvider {
     var excludedTransactionsPublisher: Published<[TransactionModel]>.Publisher { $excludedTransactions }
     
     func toggleInclusion(for transaction: TransactionModel) {
-        
+        if excludedTransactions.contains(transaction) {
+            excludedTransactions.removeAll(where: { $0 == transaction})
+        } else {
+            excludedTransactions.append(transaction)
+        }
     }
     
     func update() {

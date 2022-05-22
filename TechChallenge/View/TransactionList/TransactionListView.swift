@@ -11,14 +11,13 @@ import Combine
 struct TransactionListView: View {
     
     @ObservedObject var viewModel: TransactionListViewModel
-        
-    private let cateforyFilterBar = CategoriesFilterBar()
-    
+            
     var body: some View {
         
         VStack {
-            
-            cateforyFilterBar
+            CategoriesFilterBar(with: { category in
+                viewModel.updateModel(for: category)
+            })
             
             List {
                 ForEach(viewModel.transactions) { transaction in
@@ -38,14 +37,15 @@ struct TransactionListView: View {
     
     init(viewModel: TransactionListViewModel) {
         self.viewModel = viewModel
-        viewModel.bind(cateforyFilterBar.filter)
     }
 }
 
 #if DEBUG
 struct TransactionListView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionListView(viewModel: TransactionListViewModel())
+        let viewModel = TransactionListViewModel(transactionProvider: AppModel.shared)
+        AppModel.shared.update()
+        return TransactionListView(viewModel: viewModel)
     }
 }
 #endif

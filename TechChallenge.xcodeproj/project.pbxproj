@@ -125,10 +125,10 @@
 			isa = PBXGroup;
 			children = (
 				3C3FCAAE26C57C650092AB11 /* README.md */,
-				D998254C283BB0E700FF6A3A /* AppModel.swift */,
 				3CE226C926B2E43000B3D085 /* View */,
 				D998254E283C3F6800FF6A3A /* ViewModel */,
 				3CE226CA26B2E43B00B3D085 /* Model */,
+				D9982551283C61E800FF6A3A /* Helpers */,
 				3CE2268726B007D300B3D085 /* Assets.xcassets */,
 				3CE2268C26B007D300B3D085 /* Info.plist */,
 				3CE2268926B007D300B3D085 /* Preview Content */,
@@ -159,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				3CE2268326B007D200B3D085 /* TechChallengeApp.swift */,
+				D998254C283BB0E700FF6A3A /* AppModel.swift */,
 				3CE226CB26B2E44E00B3D085 /* Insights */,
 				3CE226C826B2E42800B3D085 /* TransactionList */,
 				3CE226CC26B2E47300B3D085 /* Shared */,
@@ -190,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				3CE226BE26B05EB100B3D085 /* ViewModifiers.swift */,
-				D9982548283B84CB00FF6A3A /* TransactionModelCollectionHelpers.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -231,6 +231,14 @@
 				D998253F283AB0DF00FF6A3A /* TransactionListViewModel.swift */,
 			);
 			path = TransactionList;
+			sourceTree = "<group>";
+		};
+		D9982551283C61E800FF6A3A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D9982548283B84CB00FF6A3A /* TransactionModelCollectionHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
