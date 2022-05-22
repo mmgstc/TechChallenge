@@ -23,7 +23,7 @@ struct InsightsView: View {
             
             ForEach(TransactionModel.Category.allCases) { category in
                 HStack {
-                    Text(category.rawValue)
+                    Text(category.name)
                         .font(.headline)
                         .foregroundColor(category.color)
                     Spacer()

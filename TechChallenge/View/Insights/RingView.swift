@@ -29,7 +29,7 @@ struct RingView: View {
     }
 
     private func gradient(for categoryIndex: Int) -> AngularGradient {
-        let color = Category[categoryIndex]?.color ?? .black
+        let color = Category[categoryIndex].color
         return AngularGradient(
             gradient: Gradient(colors: [color.unsaturated, color]),
             center: .center,

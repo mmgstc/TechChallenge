@@ -15,9 +15,8 @@ struct FloatingSumView: View {
     var body: some View {
         VStack(alignment: .trailing) {
             
-            Text(category?.rawValue ?? "all")
-                .font(.headline)
-                .foregroundColor(category?.color ?? .black)
+            Text(category.name)
+                .categoryHeading(category)
                 .padding(.horizontal)
                 .padding(.top)
             

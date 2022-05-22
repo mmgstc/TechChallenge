@@ -61,13 +61,9 @@ private struct CategoryButton: View {
 
     var body: some View {
         Button(action: tapAction) {
-            Text(category?.rawValue ?? "all")
-                .padding(6)
+            Text(category.name)
         }
-        .background(category?.color ?? .black)
-        .foregroundColor(.white)
-        .font(.system(.title2).weight(.bold))
-        .clipShape(Capsule())
+        .categoryButton(category)
     }
     
     private func tapAction() {

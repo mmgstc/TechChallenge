@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Combine
 @testable import TechChallenge
 
 class TechChallengeTests: XCTestCase {

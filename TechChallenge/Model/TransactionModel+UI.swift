@@ -35,4 +35,28 @@ extension TransactionModel.Category {
             return .purple
         }
     }
+    
+    var name: String {
+        return self.rawValue
+    }
+}
+
+extension Optional where Wrapped == TransactionModel.Category {
+    var color: Color {
+        switch self {
+        case .none:
+            return .black
+        case .some(let category):
+            return category.color
+        }
+    }
+    
+    var name: String {
+        switch self {
+        case .none:
+            return "all"
+        case .some(let category):
+            return category.rawValue
+        }
+    }
 }

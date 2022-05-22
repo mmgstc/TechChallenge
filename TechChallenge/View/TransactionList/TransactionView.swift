@@ -25,7 +25,7 @@ struct TransactionView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(transaction.category.rawValue)
+                Text(transaction.category.name)
                     .font(.headline)
                     .foregroundColor(transaction.category.color)
                 Spacer()
@@ -33,7 +33,7 @@ struct TransactionView: View {
                     isPinned.toggle()
                     action()
                 }) {
-                    Image(systemName: isPinned ? "pin.fill" : "pin.slash.fill")
+                    Image.pin(isPinned)
                 }
             }
             
