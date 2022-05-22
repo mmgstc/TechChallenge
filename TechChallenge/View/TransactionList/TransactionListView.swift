@@ -30,8 +30,7 @@ struct TransactionListView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Transactions")
             
-            FloatingSumView(category: viewModel.category,
-                            total: viewModel.total)
+            FloatingSumView(category: viewModel.category, total: viewModel.total)
         }
     }
     

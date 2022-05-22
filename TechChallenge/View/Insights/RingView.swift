@@ -10,20 +10,20 @@ import SwiftUI
 fileprivate typealias Category = TransactionModel.Category
 
 struct RingView: View {
-    let transactions: [TransactionModel]
+    let viewModel: RingViewModel
     
     private func ratio(for categoryIndex: Int) -> Double {
-        // TODO: calculate ratio for each category according to cummulative expense
-        
-        // Returning sample value
-        0.2
+        viewModel.ratioMap[TransactionModel.Category.allCases[categoryIndex]] ?? 0.0
     }
     
     private func offset(for categoryIndex: Int) -> Double {
-        // TODO: calculate offset for each category according to cummulative expense
-        
-        // Returning sample value
-        Double(categoryIndex) * 0.2
+        return (0...categoryIndex).reduce(0.0, { partialResult, index in
+            let previousIndex = index - 1
+            guard previousIndex >= 0 else {
+                return partialResult
+            }
+            return partialResult + ratio(for: previousIndex)
+        })
     }
 
     private func gradient(for categoryIndex: Int) -> AngularGradient {
@@ -48,7 +48,7 @@ struct RingView: View {
     
     var body: some View {
         ZStack {
-            ForEach(Category.allCases.indices) { categoryIndex in
+            ForEach(Category.allCases.indices, id: \.self) { categoryIndex in
                 PartialCircleShape(
                     offset: offset(for: categoryIndex),
                     ratio: ratio(for: categoryIndex)
@@ -129,7 +129,7 @@ struct RingView_Previews: PreviewProvider {
             sampleRing
                 .scaledToFit()
             
-            RingView(transactions: ModelData.sampleTransactions)
+            RingView(viewModel: RingViewModel())
                 .scaledToFit()
         }
         .padding()

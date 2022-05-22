@@ -28,6 +28,9 @@
 		D998253E283A9A4D00FF6A3A /* CategoriesFilterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998253D283A9A4D00FF6A3A /* CategoriesFilterBar.swift */; };
 		D9982540283AB0DF00FF6A3A /* TransactionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998253F283AB0DF00FF6A3A /* TransactionListViewModel.swift */; };
 		D9982545283AC3D500FF6A3A /* FloatingSumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9982544283AC3D500FF6A3A /* FloatingSumView.swift */; };
+		D9982547283B014000FF6A3A /* InsightsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9982546283B014000FF6A3A /* InsightsViewModel.swift */; };
+		D9982549283B84CB00FF6A3A /* TransactionModelCollectionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9982548283B84CB00FF6A3A /* TransactionModelCollectionHelpers.swift */; };
+		D998254B283B8B0F00FF6A3A /* RingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998254A283B8B0F00FF6A3A /* RingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,9 @@
 		D998253D283A9A4D00FF6A3A /* CategoriesFilterBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesFilterBar.swift; sourceTree = "<group>"; };
 		D998253F283AB0DF00FF6A3A /* TransactionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListViewModel.swift; sourceTree = "<group>"; };
 		D9982544283AC3D500FF6A3A /* FloatingSumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingSumView.swift; sourceTree = "<group>"; };
+		D9982546283B014000FF6A3A /* InsightsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsViewModel.swift; sourceTree = "<group>"; };
+		D9982548283B84CB00FF6A3A /* TransactionModelCollectionHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModelCollectionHelpers.swift; sourceTree = "<group>"; };
+		D998254A283B8B0F00FF6A3A /* RingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +178,9 @@
 			isa = PBXGroup;
 			children = (
 				3CE226C626B2E41E00B3D085 /* InsightsView.swift */,
+				D9982546283B014000FF6A3A /* InsightsViewModel.swift */,
 				3CE01C6126B2E59C0091B7BA /* RingView.swift */,
+				D998254A283B8B0F00FF6A3A /* RingViewModel.swift */,
 			);
 			path = Insights;
 			sourceTree = "<group>";
@@ -181,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				3CE226BE26B05EB100B3D085 /* ViewModifiers.swift */,
+				D9982548283B84CB00FF6A3A /* TransactionModelCollectionHelpers.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -312,6 +321,7 @@
 				3CE226BB26B0573C00B3D085 /* Date.swift in Sources */,
 				D9982545283AC3D500FF6A3A /* FloatingSumView.swift in Sources */,
 				3CE226C726B2E41E00B3D085 /* InsightsView.swift in Sources */,
+				D9982547283B014000FF6A3A /* InsightsViewModel.swift in Sources */,
 				3CE226BF26B05EB100B3D085 /* ViewModifiers.swift in Sources */,
 				D9982540283AB0DF00FF6A3A /* TransactionListViewModel.swift in Sources */,
 				3C296ECF26B31193006DF667 /* Angle.swift in Sources */,
@@ -321,6 +331,8 @@
 				3CE2268426B007D200B3D085 /* TechChallengeApp.swift in Sources */,
 				3C296ED126B404A5006DF667 /* Path.swift in Sources */,
 				D998253E283A9A4D00FF6A3A /* CategoriesFilterBar.swift in Sources */,
+				D9982549283B84CB00FF6A3A /* TransactionModelCollectionHelpers.swift in Sources */,
+				D998254B283B8B0F00FF6A3A /* RingViewModel.swift in Sources */,
 				3CE226B926B0548C00B3D085 /* TransactionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -36,9 +36,7 @@ class TransactionListViewModel: ObservableObject {
         self.category = category
         
         defer {
-            total = transactions.reduce(0.0, {partial, transaction in
-                partial + transaction.amount
-            })
+            total = transactions.total()
         }
         
         guard let category = category else {
@@ -46,6 +44,6 @@ class TransactionListViewModel: ObservableObject {
             return
         }
         
-        transactions = allTransactions.filter({ $0.category == category })
+        transactions = allTransactions.filter(by: category)
     }
 }

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct TransactionView: View {
+    
+    @State var isPinned: Bool = true
+    
     let transaction: TransactionModel
     
     var body: some View {
@@ -17,32 +20,39 @@ struct TransactionView: View {
                     .font(.headline)
                     .foregroundColor(transaction.category.color)
                 Spacer()
+                Button(action: {
+                    isPinned.toggle()
+                }) {
+                    Image(systemName: isPinned ? "pin.fill" : "pin.slash.fill")
+                }
             }
             
-            HStack {
-                transaction.image
-                    .resizable()
-                    .frame(
-                        width: 60.0,
-                        height: 60.0,
-                        alignment: .top
-                    )
-                
-                VStack(alignment: .leading) {
-                    Text(transaction.name)
-                        .secondary()
-                    Text(transaction.accountName)
-                        .tertiary()
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .trailing) {
-                    Text("$\(transaction.amount.formatted())")
-                        .bold()
-                        .secondary()
-                    Text(transaction.date.formatted)
-                        .tertiary()
+            if isPinned {
+                HStack {
+                    transaction.image
+                        .resizable()
+                        .frame(
+                            width: 60.0,
+                            height: 60.0,
+                            alignment: .top
+                        )
+                    
+                    VStack(alignment: .leading) {
+                        Text(transaction.name)
+                            .secondary()
+                        Text(transaction.accountName)
+                            .tertiary()
+                    }
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .trailing) {
+                        Text("$\(transaction.amount.formatted())")
+                            .bold()
+                            .secondary()
+                        Text(transaction.date.formatted)
+                            .tertiary()
+                    }
                 }
             }
         }
