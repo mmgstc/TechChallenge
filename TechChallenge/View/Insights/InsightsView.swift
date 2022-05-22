@@ -10,7 +10,11 @@ import SwiftUI
 struct InsightsView: View {
     let transactions: [TransactionModel] = ModelData.sampleTransactions
     
-    @ObservedObject var viewModel = InsightsViewModel()
+    @ObservedObject var viewModel: InsightsViewModel
+    
+    init(viewModel: InsightsViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         List {
@@ -38,7 +42,7 @@ struct InsightsView: View {
 #if DEBUG
 struct InsightsView_Previews: PreviewProvider {
     static var previews: some View {
-        InsightsView()
+        InsightsView(viewModel: InsightsViewModel(transactionProvider: nil))
             .previewLayout(.sizeThatFits)
     }
 }

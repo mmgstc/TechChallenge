@@ -11,24 +11,29 @@ import Combine
 
 class TechChallengeTests: XCTestCase {
     
+    var transactionProvider: TransactionProvider!
     var model: TransactionListViewModel!
     var filterSubject = PassthroughSubject<TransactionModel.Category?, Never>()
     var filter: AnyPublisher<TransactionModel.Category?,Never> {
         filterSubject.eraseToAnyPublisher()
     }
     
+    
     override func setUp() async throws {
-        model = TransactionListViewModel()
+        transactionProvider = MockTransactionProvider()
+        model = TransactionListViewModel(transactionProvider: transactionProvider)
         model.bind(filter)
     }
     
     override func tearDown() async throws {
         model = nil
+        transactionProvider = nil
     }
 
     func testFilteredTransactions() throws {
         
         // Given
+        transactionProvider.update()
         
         for category in TransactionModel.Category.allCases {
             // When
@@ -44,7 +49,8 @@ class TechChallengeTests: XCTestCase {
     func testAllCategoriesTransactionFilter() throws {
         
         // Given the model
-        
+        transactionProvider.update()
+
         // When
         filterSubject.send(nil)
 
@@ -55,8 +61,8 @@ class TechChallengeTests: XCTestCase {
     func testTotalForAllTransactions() throws {
         
         // Given
-        model = TransactionListViewModel(allTransactions: ModelData.sampleTransactions)
         model.bind(filter)
+        transactionProvider.update()
         
         // When
         filterSubject.send(nil)
@@ -76,7 +82,7 @@ class TechChallengeTests: XCTestCase {
             .travel: "215.28"
         ]
         
-        model = TransactionListViewModel(allTransactions: ModelData.sampleTransactions)
+        transactionProvider.update()
         model.bind(filter)
         
         // When
@@ -87,5 +93,24 @@ class TechChallengeTests: XCTestCase {
             // Then
             XCTAssertEqual(model.total.formatted(), totals[category])
         }
+    }
+}
+
+private class MockTransactionProvider: TransactionProvider {
+    
+    @Published var allTransactions: [TransactionModel] = []
+    var allTransactionsPublished: Published<[TransactionModel]> { _allTransactions }
+    var allTransactionsPublisher: Published<[TransactionModel]>.Publisher { $allTransactions }
+    
+    @Published var excludedTransactions: [TransactionModel] = []
+    var excludedTransactionsPublished: Published<[TransactionModel]> { _excludedTransactions }
+    var excludedTransactionsPublisher: Published<[TransactionModel]>.Publisher { $excludedTransactions }
+    
+    func toggleInclusion(for transaction: TransactionModel) {
+        
+    }
+    
+    func update() {
+        allTransactions = ModelData.sampleTransactions
     }
 }

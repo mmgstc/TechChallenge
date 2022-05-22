@@ -9,9 +9,7 @@ import Foundation
 import Combine
 
 class RingViewModel: ObservableObject {
-    
-    private var cancelBag = Set<AnyCancellable>()
-    
+        
     @Published var ratioMap: [TransactionModel.Category: Double] = [:]
 
     func updateModel(for categoriesTotalMap: [TransactionModel.Category: Double]) {

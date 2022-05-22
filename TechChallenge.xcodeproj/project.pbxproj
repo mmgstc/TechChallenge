@@ -31,6 +31,7 @@
 		D9982547283B014000FF6A3A /* InsightsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9982546283B014000FF6A3A /* InsightsViewModel.swift */; };
 		D9982549283B84CB00FF6A3A /* TransactionModelCollectionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9982548283B84CB00FF6A3A /* TransactionModelCollectionHelpers.swift */; };
 		D998254B283B8B0F00FF6A3A /* RingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998254A283B8B0F00FF6A3A /* RingViewModel.swift */; };
+		D998254D283BB0E700FF6A3A /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998254C283BB0E700FF6A3A /* AppModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		D9982546283B014000FF6A3A /* InsightsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsViewModel.swift; sourceTree = "<group>"; };
 		D9982548283B84CB00FF6A3A /* TransactionModelCollectionHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModelCollectionHelpers.swift; sourceTree = "<group>"; };
 		D998254A283B8B0F00FF6A3A /* RingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingViewModel.swift; sourceTree = "<group>"; };
+		D998254C283BB0E700FF6A3A /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +125,9 @@
 			isa = PBXGroup;
 			children = (
 				3C3FCAAE26C57C650092AB11 /* README.md */,
+				D998254C283BB0E700FF6A3A /* AppModel.swift */,
 				3CE226C926B2E43000B3D085 /* View */,
+				D998254E283C3F6800FF6A3A /* ViewModel */,
 				3CE226CA26B2E43B00B3D085 /* Model */,
 				3CE2268726B007D300B3D085 /* Assets.xcassets */,
 				3CE2268C26B007D300B3D085 /* Info.plist */,
@@ -146,7 +150,6 @@
 				D998253D283A9A4D00FF6A3A /* CategoriesFilterBar.swift */,
 				3CE226B826B0548C00B3D085 /* TransactionView.swift */,
 				3CE226B426B0523C00B3D085 /* TransactionListView.swift */,
-				D998253F283AB0DF00FF6A3A /* TransactionListViewModel.swift */,
 				D9982544283AC3D500FF6A3A /* FloatingSumView.swift */,
 			);
 			path = TransactionList;
@@ -178,9 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				3CE226C626B2E41E00B3D085 /* InsightsView.swift */,
-				D9982546283B014000FF6A3A /* InsightsViewModel.swift */,
 				3CE01C6126B2E59C0091B7BA /* RingView.swift */,
-				D998254A283B8B0F00FF6A3A /* RingViewModel.swift */,
 			);
 			path = Insights;
 			sourceTree = "<group>";
@@ -204,6 +205,32 @@
 				3C296ED026B404A5006DF667 /* Path.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D998254E283C3F6800FF6A3A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D9982550283C3F9800FF6A3A /* TransactionList */,
+				D998254F283C3F8100FF6A3A /* Insights */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D998254F283C3F8100FF6A3A /* Insights */ = {
+			isa = PBXGroup;
+			children = (
+				D9982546283B014000FF6A3A /* InsightsViewModel.swift */,
+				D998254A283B8B0F00FF6A3A /* RingViewModel.swift */,
+			);
+			path = Insights;
+			sourceTree = "<group>";
+		};
+		D9982550283C3F9800FF6A3A /* TransactionList */ = {
+			isa = PBXGroup;
+			children = (
+				D998253F283AB0DF00FF6A3A /* TransactionListViewModel.swift */,
+			);
+			path = TransactionList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,6 +348,7 @@
 				3CE226BB26B0573C00B3D085 /* Date.swift in Sources */,
 				D9982545283AC3D500FF6A3A /* FloatingSumView.swift in Sources */,
 				3CE226C726B2E41E00B3D085 /* InsightsView.swift in Sources */,
+				D998254D283BB0E700FF6A3A /* AppModel.swift in Sources */,
 				D9982547283B014000FF6A3A /* InsightsViewModel.swift in Sources */,
 				3CE226BF26B05EB100B3D085 /* ViewModifiers.swift in Sources */,
 				D9982540283AB0DF00FF6A3A /* TransactionListViewModel.swift in Sources */,

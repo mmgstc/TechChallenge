@@ -10,7 +10,7 @@ import Combine
 
 struct TransactionListView: View {
     
-    @ObservedObject var viewModel = TransactionListViewModel()
+    @ObservedObject var viewModel: TransactionListViewModel
         
     private let cateforyFilterBar = CategoriesFilterBar()
     
@@ -22,7 +22,9 @@ struct TransactionListView: View {
             
             List {
                 ForEach(viewModel.transactions) { transaction in
-                    TransactionView(transaction: transaction)
+                    TransactionView(transaction: transaction) {
+                        viewModel.togglePin(for: transaction)
+                    }
                 }
             }
             .animation(.easeIn)
@@ -34,7 +36,8 @@ struct TransactionListView: View {
         }
     }
     
-    init () {
+    init(viewModel: TransactionListViewModel) {
+        self.viewModel = viewModel
         viewModel.bind(cateforyFilterBar.filter)
     }
 }
@@ -42,7 +45,7 @@ struct TransactionListView: View {
 #if DEBUG
 struct TransactionListView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionListView()
+        TransactionListView(viewModel: TransactionListViewModel())
     }
 }
 #endif

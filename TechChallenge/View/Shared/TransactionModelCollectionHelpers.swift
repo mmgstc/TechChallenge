@@ -18,4 +18,8 @@ extension Array where Element == TransactionModel {
     func filter(by category: TransactionModel.Category) -> Self {
         return self.filter({ $0.category == category })
     }
+    
+    func filter(excluding transactions: [TransactionModel]) -> Self {
+        return Array(Set(self).subtracting(Set(transactions)))
+    }
 }

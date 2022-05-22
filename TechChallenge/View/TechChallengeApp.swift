@@ -9,24 +9,29 @@ import SwiftUI
 
 @main
 struct TechChallengeApp: App {
+    
+    @ObservedObject var appModel = AppModel()
 
     var body: some Scene {
         WindowGroup {
             TabView {
                 NavigationView {
-                    TransactionListView()
+                    TransactionListView(viewModel: TransactionListViewModel(transactionProvider: appModel))
                 }
                 .tabItem {
                     Label("Transactions", systemImage: "list.bullet")
                 }
                 
                 NavigationView {
-                    InsightsView()
+                    InsightsView(viewModel: InsightsViewModel(transactionProvider: appModel))
                 }
                 .tabItem {
                     Label("Insights", systemImage: "chart.pie.fill")
                 }
             }
+            .onAppear(perform: {
+                appModel.update()
+            })
         }
     }
 }

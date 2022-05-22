@@ -9,9 +9,18 @@ import SwiftUI
 
 struct TransactionView: View {
     
+    typealias Action = () -> Void
+    
+    private let action: Action
+    
     @State var isPinned: Bool = true
     
     let transaction: TransactionModel
+    
+    init(transaction: TransactionModel, action: @escaping Action) {
+        self.transaction = transaction
+        self.action = action
+    }
     
     var body: some View {
         VStack {
@@ -22,6 +31,7 @@ struct TransactionView: View {
                 Spacer()
                 Button(action: {
                     isPinned.toggle()
+                    action()
                 }) {
                     Image(systemName: isPinned ? "pin.fill" : "pin.slash.fill")
                 }
@@ -66,8 +76,8 @@ struct TransactionView: View {
 struct TransactionView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            TransactionView(transaction: ModelData.sampleTransactions[0])
-            TransactionView(transaction: ModelData.sampleTransactions[1])
+            TransactionView(transaction: ModelData.sampleTransactions[0], action: {})
+            TransactionView(transaction: ModelData.sampleTransactions[1], action: {})
         }
         .padding()
         .previewLayout(.sizeThatFits)

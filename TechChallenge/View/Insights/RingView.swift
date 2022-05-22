@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import Combine
 
 fileprivate typealias Category = TransactionModel.Category
 
 struct RingView: View {
-    let viewModel: RingViewModel
+    
+    @ObservedObject var viewModel: RingViewModel
     
     private func ratio(for categoryIndex: Int) -> Double {
         viewModel.ratioMap[TransactionModel.Category.allCases[categoryIndex]] ?? 0.0
