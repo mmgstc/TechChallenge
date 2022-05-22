@@ -86,6 +86,21 @@ class TechChallengeTests: XCTestCase {
             XCTAssertEqual(model.total.formatted(), totals[category])
         }
     }
+    
+    func testTotalWithUnpinnedTransactions() throws {
+        // Given
+        
+        let referenceTotal = "61.11"
+        transactionProvider.update()
+        let unpinnedTransaction = transactionProvider.allTransactions.first(where: { $0.id == 12 })!
+        transactionProvider.toggleInclusion(for: unpinnedTransaction)
+        
+        // When
+        model.updateModel(for: TransactionModel.Category.shopping)
+
+        // Then
+        XCTAssertEqual(model.total.formatted(), referenceTotal)
+    }
 }
 
 private class MockTransactionProvider: TransactionProvider {
